@@ -236,6 +236,18 @@ $(document).ready(function () {
   // 	},
   // });
 
+  let swiper = new Swiper('.cardSwiper', {
+    loop:true,
+    slidesPerView:1,
+    spaceBetween:20,
+    speed:3500,
+    autoplay:true,
+    pagination:{
+        el:".swiper-pagination",
+        clickable:true,
+    }
+  })
+
   // == basic_banner_read_btn == //
   let basic_banner_read_btn = false;
   $(".basic_banner_read_btn").click(function () {
@@ -315,6 +327,12 @@ $(document).ready(function () {
   // $(".customPopup").click(function () {
   //   $(this).removeClass("active");
   // });
+
+  document.querySelectorAll('.customPopup').forEach(function(popup){
+    popup.addEventListener('click',function(){
+        popup.classList.remove('active')
+    })
+  })
 
   $(".closeIcon").click(function () {
     $(".customPopup").removeClass("active");
@@ -408,6 +426,18 @@ $(document).ready(function () {
   //   obj.addClass("active").siblings().removeClass("active");
   //   $(obj.attr("data-tab")).addClass("active").siblings().removeClass("active");
   // });
+
+  document.querySelectorAll('.LoginSignUpBox .TabsHead').forEach(function(result){
+    result.addEventListener('click',function(){
+        let obj = result
+        obj.classList.add('active')
+        Array.from(obj.parentElement.children).forEach(function(sibling){
+            if(sibling !== obj){
+                sibling.classList.remove('active')
+            }
+        })
+    })
+  })
 
   $(".popupRemover").click(function () {
     $("#LoginBox").removeClass("active");
